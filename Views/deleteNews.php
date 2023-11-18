@@ -1,5 +1,5 @@
 <?php
-include '../Controller/newsC.php';
-$clientC = new newsC();
-$clientC->deletenews($_GET["id_nw"]);
-header('Location:news.php');
+include $_SERVER['DOCUMENT_ROOT'].'/Projet-Web/Controller/NewsC.php';
+$clientC = new NewsC();
+$clientC->deleteNews($_GET["id"]);
+header('Location:../View/back/news.php');

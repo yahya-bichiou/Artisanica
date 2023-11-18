@@ -1,3 +1,49 @@
+<?php
+
+include $_SERVER['DOCUMENT_ROOT'].'/Projet-Web/Controller/newsC.php';
+include $_SERVER['DOCUMENT_ROOT'].'/Projet-Web/model/newsM.php';
+$error = "";
+
+// create client
+$news = null;
+// create an instance of the controller
+$newsC = new NewsC();
+
+
+if (
+    isset($_POST["titre_nw"]) &&
+    isset($_POST["date_nw"]) &&
+    isset($_POST["image_nw"]) &&
+    isset($_POST["text_nw"])
+) {
+    if (
+        !empty($_POST['titre_nw']) &&
+        !empty($_POST["date_nw"]) &&
+        !empty($_POST["image_nw"]) &&
+        !empty($_POST["text_nw"])
+    ) {
+        foreach ($_POST as $key => $value) {
+            echo "Key: $key, Value: $value<br>";
+        }
+        $news = new News(
+            null,
+            $_POST['titre_nw'],
+            $_POST['date_nw'],
+            $_POST['image_nw'],
+            $_POST['text_nw']
+        );
+        var_dump($news);
+        
+        $newsC->updateNews($news, $_POST['idNews']);
+
+        header('Location:../View/back/news.php');
+    } else
+        $error = "Missing information";
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -343,115 +389,74 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Modifier News</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tables News</h6>
                         </div>
                         <div class="card-body">
-                        <?php
+                            <div class="table-responsive">
 
-                        include '../Controller/newsC.php';
-                        include '../Model/news.php';
-                        $error = "";
+    <div id="error">
+        <?php echo $error; ?>
+    </div>
 
-                        // create client
-                        $news = null;
-                        // create an instance of the controller
-                        $newsC = new NewsC();
-
-
-                        if ( 
-                            isset($_POST["titre_nw"]) &&
-                            isset($_POST["date_nw"]) &&
-                            isset($_POST["image_nw"])
-                            ) {
-                                if (
-                                    !empty($_POST['titre_nw']) &&
-                                    !empty($_POST["date_nw"]) &&
-                                    !empty($_POST["image_nw"])
-                                    ) {
-                                        foreach ($_POST as $key => $value) {
-                                            echo "Key: $key, Value: $value<br>";
-                                        }
-                                        $news = new News(
-                                            null,
-                                            $_POST['titre_nw'],
-                                            $_POST['date_nw'],
-                                            $_POST['image_nw']
-                                        );
-                                        var_dump($news);
+    <?php
+    if (isset($_POST['idNews'])) {
+        $news = $newsC->showNews($_POST['idNews']);
         
-                                        $newsC->updateNews($news, $_POST['idnews']);
+    ?>
 
-                                        header('Location:news.php');
-                                    } else
-                                    $error = "Missing information";
-                                }
+        <form action="" method="POST">
+            <table>
+            <tr>
+                    <td><label for="titre_nw">Id :</label></td>
+                    <td>
+                        <input type="text" id="idNews" name="idNews" value="<?php echo $_POST['idNews'] ?>" readonly />
+                        <span id="erreurTitre_nw" style="color: red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="titre_nw">Titre :</label></td>
+                    <td>
+                        <input type="text" id="titre_nw" name="titre_nw" value="<?php echo $news['titre_nw'] ?>" />
+                        <span id="erreurTitre_nw" style="color: red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="date_nw">Date :</label></td>
+                    <td>
+                        <input type="date" id="date_nw" name="date_nw" value="<?php echo $news['date_nw'] ?>" />
+                        <span id="erreurDate_nw" style="color: red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="image_nw">Image :</label></td>
+                    <td>
+                        <input type="text" id="image_nw" name="image_nw" value="<?php echo $news['image_nw'] ?>" />
+                        <span id="erreurImage_nw" style="color: red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="text_nw">Text :</label></td>
+                    <td>
+                        <input type="text" id="text_nw" name="text_nw" value="<?php echo $news['text_nw'] ?>" />
+                        <span id="erreurText_nw" style="color: red"></span>
+                    </td>
+                </tr>
 
 
-                                ?>
-                        <html lang="en">
+                <td>
+                    <input type="submit" value="Save">
+                </td>
+                <td>
+                    <input type="reset" value="Reset">
+                </td>
+            </table>
 
-                        <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>User Display</title>
-                        </head>
-
-                        <body>
-                        <button><a href="news.php">Back to list</a></button>
-                        <hr>
-
-                        <div id="error">
-                        <?php echo $error; ?>
-                        </div>
-                            <?php
-                                if (isset($_POST['idnews'])) {
-                                    $news = $newsC->shownews($_POST['idnews']);
-        
-                            ?>
-                                <form action="" method="POST">
-                                <table>
-                                <tr>
-                                <td><label for="titre_nw">Id :</label></td>
-                                    <td>
-                                    <input type="text" id="idnews" name="idnews" value="<?php echo $_POST['idnews'] ?>" readonly />
-                                    <span id="erreurtitre_nw" style="color: red"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="titre_nw">Titre :</label></td>
-                                    <td>
-                                    <input type="text" id="titre_nw" name="titre_nw" value="<?php echo $news['titre_nw'] ?>" />
-                                    <span id="erreurtitre_nw" style="color: red"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="date_nw">Date :</label></td>
-                                    <td>
-                                        <input type="text" id="date_nw" name="date_nw" value="<?php echo $news['date_nw'] ?>" />
-                                        <span id="erreurdate_nw" style="color: red"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="image_nw">Image :</label></td>
-                                    <td>
-                                        <input type="text" id="image_nw" name="image_nw" value="<?php echo $news['image_nw'] ?>" />
-                                        <span id="erreurimage_nw" style="color: red"></span>
-                                    </td>
-                                </tr>
-                                <td>
-                                    <input type="submit" value="Save">
-                                </td>
-                                <td>
-                                    <input type="reset" value="Reset">
-                                </td>
-                                </table>
-                                </form>
-                            <?php
-                                }
-                            ?>
-                            </body>
-                            </html>
-                        </div>
+        </form>
+        </div>
+    <?php
+    }
+    ?>
+        </div>
                     </div>
 
                 </div>
@@ -521,8 +526,3 @@
 </body>
 
 </html>
-
-
-
-
-
