@@ -7,7 +7,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Artisanica | Forum</title>
+  <title>Artisanica | News</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -259,7 +259,7 @@
 
 					<!-- News -->
 					<li>
-						<a href="news.html">News</a>
+						<a href="news.php">News</a>
 					</li><!-- / News -->
 
 					<!-- Shop -->
@@ -286,10 +286,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Forum</h1>
+					<h1 class="page-name">News</h1>
 					<ol class="breadcrumb">
 						<li><a href="index.html">Home</a></li>
-						<li class="active">forum</li>
+						<li class="active">news</li>
 					</ol>
 				</div>
 			</div>
@@ -298,180 +298,67 @@
 </section>
 
 
+<!-- page-->
+<style>
+    .contain {
+        display: flex;
+        align-items: flex-start; /* Align items to the top of the container */
+        border: 1px solid #ccc;
+        margin: 30px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="post post-single">
-					<!-- Chat -->
-				    <div class="post-comments">
-				    	<h3 class="post-sub-heading">All Chat</h3>
-				    	<ul class="media-list comments-list m-bot-50 clearlist">
-						    <!-- Comment Item start-->
-						    <li class="media">
+    .postC {
+        flex: 1;
+        margin-left: 20px;
+    }
 
-						        <a class="pull-left" href="#!">
-						            <img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50">
-						        </a>
+    h2 {
+        color: #333;
+        margin: 0; /* Remove default margin for h2 */
+    }
 
-						        <div class="media-body">
-						            <div class="comment-info">
-						                <h4 class="comment-author">
-						                    <a href="#!">Jonathon Andrew</a>
-						                	
-						                </h4>
-						                <time>July 02, 2015, at 11:34</time>
-						                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-						            </div>
+    p {
+        color: #555;
+        margin: 0; /* Remove default margin for p */
+    }
+</style>
 
-						            <p>
-						                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-						            </p>
-
-						            <!--  second level Comment start-->
-						            <div class="media">
-
-						                <a class="pull-left" href="#!">
-						                    <img class="media-object comment-avatar" src="images/blog/avater-2.jpg" alt="" width="50" height="50">
-						                </a>
-
-						                <div class="media-body">
-
-						                    <div class="comment-info">
-						                        <div class="comment-author">
-						                            <a href="#!">Senorita</a>
-						                        </div>
-						                        <time>July 02, 2015, at 11:34</time>
-						                        <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-						                    </div>
-
-						                    <p>
-						                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-						                    </p>
-
-						                    <!-- third level Comment start -->
-						                    <div class="media">
-
-						                        <a class="pull-left" href="#!">
-						                            <img class="media-object comment-avatar" src="images/blog/avater-3.jpg" alt="" width="50" height="50">
-						                        </a>
-
-						                        <div class="media-body">
-
-						                            <div class="comment-info">
-						                                <div class="comment-author">
-						                                    <a href="#!">Senorita</a>
-						                                </div>
-						                                <time>July 02, 2015, at 11:34</time>
-						                                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-						                            </div>
-
-						                            <p>
-						                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-						                            </p>
-
-
-						                        </div>
-
-						                    </div>
-						                    <!-- third level Comment end -->
-
-						                </div>
-
-						            </div>
-						            <!-- second level Comment end -->
-
-						        </div>
-
-						    </li>
-						    <!-- End Comment Item -->
-
-						    <!-- Comment Item start-->
-						    <li class="media">
-
-						        <a class="pull-left" href="#!">
-						            <img class="media-object comment-avatar" src="images/blog/avater-4.jpg" alt="" width="50" height="50">
-						        </a>
-
-						        <div class="media-body">
-
-						            <div class="comment-info">
-						                <div class="comment-author">
-						                    <a href="#!">Jonathon Andrew</a>
-						                </div>
-						                <time>July 02, 2015, at 11:34</time>
-						                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-						            </div>
-
-						            <p>
-						                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-						            </p>
-
-						        </div>
-
-						    </li>
-						    <!-- End Comment Item -->
-
-						    <!-- Comment Item start-->
-						    <li class="media">
-
-						        <a class="pull-left" href="#!">
-						            <img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50">
-						        </a>
-
-						        <div class="media-body">
-
-						            <div class="comment-info">
-						                <div class="comment-author">
-						                    <a href="#!">Jonathon Andrew</a>
-						                </div>
-						                <time>July 02, 2015, at 11:34</time>
-						                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-						            </div>
-
-						            <p>
-						                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-						            </p>
-
-						        </div>
-
-						    </li>
-						    <!-- End Comment Item -->
-
-						</ul>
-				    </div>
-
-				    <div class="post-comments-form">
-				    	<h3 class="post-sub-heading"></h3>
-				    	<form method="post" action="#" id="form" role="form" >
-
-				            <div class="row">
-
-				                <!-- Comment -->
-				                <div class="form-group col-md-12">
-				                    <textarea name="text" id="text" class="form-control" rows="10" placeholder="Comment" maxlength="400"></textarea>
-				                </div>
-
-				                <!-- Send Button -->
-				                <div class="form-group col-md-12">
-				                    <button type="submit" class="btn btn-small btn-main ">
-				                        Send
-				                    </button>
-				                </div>
-
-
-				            </div>
-
-				        </form>
-				    </div>
-
-
+<?php
+	include $_SERVER['DOCUMENT_ROOT'].'/Projet-Web/controller/newsC.php';
+?>
+        <?php 
+			$c = new newsC();
+			$tab = $c->listnews();
+			
+			?>
+				<?php
+				foreach ($tab as $news) {
+				?>
+				<div class="contain">
+    			<img src="images/news/<?= $news['image_nw']; ?>" alt="Image for Post 2" height="200px">
+    			<div class="postC">
+					<table>
+						<tr>
+							<td><h2><?= $news['titre_nw']; ?></h2></td>
+						</tr>
+						<tr>
+							<td>Date: <?= $news['date_nw']; ?></td>
+						</tr>
+						<tr>
+							<td><?= $news['text_nw']; ?></td>
+						</tr>
+						
+					</table>
+					</div>
 				</div>
-
-			</div>
-		</div>
-	</div>
+				<?php
+				}
+				?>
 </section>
+
+
 
 <footer class="footer section text-center">
 	<div class="container">
