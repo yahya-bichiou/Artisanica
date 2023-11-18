@@ -1,11 +1,11 @@
 <?php
 
-require '../config.php';
+require $_SERVER['DOCUMENT_ROOT'].'/Projet-Web/config.php';
 
 class NewsC
 {
 
-    public function listnews()
+    public function listNews()
     {
         $sql = "SELECT * FROM news";
         $db = config::getConnexion();
@@ -17,12 +17,12 @@ class NewsC
         }
     }
 
-    function deletenews($ide_nw)
+    function deleteNews($ide)
     {
-        $sql = "DELETE FROM news WHERE id_nw = :id_nw";
+        $sql = "DELETE FROM news WHERE id = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        $req->bindValue(':id_nw', $ide_nw);
+        $req->bindValue(':id', $ide);
 
         try {
             $req->execute();
@@ -32,17 +32,18 @@ class NewsC
     }
 
 
-    function addnews($news)
+    function addNews($news)
     {
-        $sql = "INSERT INTO news
-        VALUES (NULL, :titre_nw,:date_nw, :image_nw)";
+        $sql = "INSERT INTO news  
+        VALUES (NULL, :titre_nw,:date_nw, :image_nw,:text_nw)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'titre_nw' => $news->gettitre_nw(),
-                'date_nw' => $news->getdate_nw(),
-                'image_nw' => $news->getimage_nw(),
+                'titre_nw' => $news->getTitre(),
+                'date_nw' => $news->getDate(),
+                'image_nw' => $news->getImage(),
+                'text_nw' => $news->getText(),
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -50,9 +51,9 @@ class NewsC
     }
 
 
-    function shownews($id_nw)
+    function showNews($id)
     {
-        $sql = "SELECT * from news where id_nw = $id_nw";
+        $sql = "SELECT * from news where id = $id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -64,7 +65,7 @@ class NewsC
         }
     }
 
-    function updateNews($news, $id_nw)
+    function updateNews($news, $id)
     {   
         try {
             $db = config::getConnexion();
@@ -73,14 +74,16 @@ class NewsC
                     titre_nw = :titre_nw, 
                     date_nw = :date_nw, 
                     image_nw = :image_nw, 
-                WHERE id_nw= :idnews'
+                    text_nw = :text_nw
+                WHERE id= :idNews'
             );
             
             $query->execute([
-                'idnews' => $id_nw,
-                'titre_nw' => $news->gettitre_nw(),
-                'date_nw' => $news->getdate_nw(),
-                'image_nw' => $news->getimage_nw(),
+                'idNews' => $id,
+                'titre_nw' => $news->getTitre(),
+                'date_nw' => $news->getDate(),
+                'image_nw' => $news->getImage(),
+                'text_nw' => $news->getText(),
             ]);
             
             echo $query->rowCount() . " records UPDATED successfully <br>";
