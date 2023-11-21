@@ -1,6 +1,6 @@
 <?php
 
-include '../Controller/EventController.php';
+include '../../Controller/EventController.php';
 
 // Assurez-vous que l'ID de l'événement à supprimer est présent dans l'URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -14,10 +14,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $eventController->deleteEvent($eventId);
 
     // Rediriger vers la liste des événements après la suppression
-    header('Location: listEvents.php');
+    header('Location: tablesEvent.php');
 } else {
     // Rediriger vers la liste des événements en cas d'ID manquant
-    header('Location: listEvents.php');
+    header('Location: tablesEvent.php');
 }
 
 ?>
