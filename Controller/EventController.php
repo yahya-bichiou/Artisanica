@@ -1,6 +1,6 @@
 <?php
 
-require '../config.php'; // Assurez-vous que le chemin vers le fichier de configuration est correct
+require '../../config.php'; // Assurez-vous que le chemin vers le fichier de configuration est correct
 
 class EventController
 {
@@ -45,7 +45,11 @@ class EventController
     
         // Vous pouvez ajouter d'autres validations ici (par exemple, format de date)
     
+       
+        
+        // Effectue l'insertion dans la base de données
         $sql = "INSERT INTO events (nom, localisation, date) VALUES (:nom, :localisation, :date)";
+        
         $db = config::getConnexion();
         
         try {
@@ -60,6 +64,8 @@ class EventController
         }
     }
     
+
+
 
     function showEvent($id)
     {
