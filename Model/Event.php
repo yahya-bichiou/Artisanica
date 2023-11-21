@@ -1,11 +1,11 @@
 <?php
-
 class Event
 {
     private ?int $idEvent = null;
     private ?string $nom = null;
     private ?string $localisation = null;
     private ?string $date = null;
+    private array $participants = array();
 
     public function __construct($id = null, $n, $loc, $date)
     {
@@ -51,6 +51,16 @@ class Event
     {
         $this->date = $date;
         return $this;
+    }
+
+    public function addParticipant(User $user)
+    {
+        $this->participants[] = $user;
+    }
+
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }
 ?>
