@@ -35,7 +35,7 @@ class NewsC
     function addNews($news)
     {
         $sql = "INSERT INTO news  
-        VALUES (NULL, :titre_nw,:date_nw, :image_nw,:text_nw)";
+        VALUES (NULL, :titre_nw,:date_nw, :image_nw, :text_nw, :likes)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -44,6 +44,7 @@ class NewsC
                 'date_nw' => $news->getDate(),
                 'image_nw' => $news->getImage(),
                 'text_nw' => $news->getText(),
+                'likes' => $news->getLikes(),
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -74,7 +75,8 @@ class NewsC
                     titre_nw = :titre_nw, 
                     date_nw = :date_nw, 
                     image_nw = :image_nw, 
-                    text_nw = :text_nw
+                    text_nw = :text_nw,
+                    likes = :likes
                 WHERE id= :idNews'
             );
             
@@ -84,11 +86,48 @@ class NewsC
                 'date_nw' => $news->getDate(),
                 'image_nw' => $news->getImage(),
                 'text_nw' => $news->getText(),
+                'likes' => $news->getLikes(),
             ]);
             
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             $e->getMessage();
         }
+    }
+
+    public function getNews($id)
+    {
+        $sql = "SELECT * FROM news WHERE id = :id";
+        $db = config::getConnexion();
+        $req = $db->prepare($sql);
+        $req->bindValue(':id', $id);
+
+        try {
+            $req->execute();
+            return $req->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function likeNews($id)
+    {
+        $db = config::getConnexion();
+        if (!$db) {
+            die("Connection failed: " . $db->connect_error);
+        }
+    
+        $stmt = $db->prepare("UPDATE news SET likes = likes + 1 WHERE id = ?");
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    
+        $stmt->close();
+        $db->close();
     }
 }
