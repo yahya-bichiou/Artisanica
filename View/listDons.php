@@ -1,12 +1,12 @@
 <?php
 
-include '../../Controller/EventController.php';
+include '../../Controller/DonController.php';
 
 // Créer une instance du contrôleur
-$eventController = new EventController();
+$DonController = new DonController();
 
 // Récupérer la liste des événements depuis la base de données
-$events = $eventController->listEvents();
+$Dons = $DonController->listeDons();
 
 ?>
 
@@ -15,7 +15,7 @@ $events = $eventController->listEvents();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Événements</title>
+    <title>Liste des Dons</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Construction Html5 Template">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -24,7 +24,7 @@ $events = $eventController->listEvents();
   
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
-  
+	
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href="plugins/themefisher-font/style.css">
   <!-- bootstrap.min css -->
@@ -142,7 +142,8 @@ $events = $eventController->listEvents();
 									<ul>
 										<li class="dropdown-header">Pages</li>
 										<li role="separator" class="divider"></li>
-										<li><a href="listEvents.php">Liste d'Event</a></li>
+										<li><a href="addEvent.php">AddDon</a></li>
+										<li><a href="listEvents.php">Liste d'Don</a></li>
 									</ul>
 								</div>
 
@@ -151,27 +152,7 @@ $events = $eventController->listEvents();
 							</div><!-- / .row -->
 						</div><!-- / .dropdown-menu -->
 					</li><!-- / Pages -->
-					<li class="dropdown full-width dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Donations <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
 
-								<!-- Introduction -->
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="addDon.php">Faire une donation</a></li>
-									</ul>
-								</div>
-
-								<!-- Mega Menu -->
-								
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / Pages -->
 
 					<!-- Pages -->
 					<li class="dropdown full-width dropdown-slide">
@@ -186,8 +167,8 @@ $events = $eventController->listEvents();
 									<ul>
 										<li class="dropdown-header">Pages</li>
 										<li role="separator" class="divider"></li>
-										<li><a href="addEvent.html">AddEvent</a></li>
-										<li><a href="checkout.html">Liste d'Event</a></li>
+										<li><a href="addEvent.html">AddDon</a></li>
+										<li><a href="checkout.html">Liste d'Don</a></li>
 									</ul>
 								</div>
 
@@ -216,7 +197,7 @@ $events = $eventController->listEvents();
 					<!-- Shop -->
 					<li class="dropdown dropdown-slide">
 						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Elements <span
+							role="button" aria-haspopup="true" aria-expanded="false">Dons <span
 								class="tf-ion-ios-arrow-down"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="typography.html">Typography</a></li>
@@ -237,10 +218,10 @@ $events = $eventController->listEvents();
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Evenements</h1>
+					<h1 class="page-name">Dons</h1>
 					<ol class="breadcrumb">
 						<li><a href="index.html">Home</a></li>
-						<li class="active">events</li>
+						<li class="active">Dons</li>
 					</ol>
 				</div>
 			</div>
@@ -252,7 +233,7 @@ $events = $eventController->listEvents();
 <section class="products section">
     <div class="container">
         <div class="row">
-            <?php foreach ($events as $event) : ?>
+            <?php foreach ($Dons as $Don) : ?>
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-thumb">
@@ -265,11 +246,11 @@ $events = $eventController->listEvents();
                             </div>
                         </div>
                         <div class="product-content">
-							<img src="images/eventlogo.png" alt="event" width="100px" height="80px">
-                            <h4><a href="#!"><?php echo $event['nom']; ?></a></h4>
-                            <p class="price"><?php echo $event['date']; ?></p>
-                            <p><?php echo $event['localisation']; ?></p>
+							<img src="images/logodon.jpg" alt="don" width="100px" height="80px">
+                            <h4><a href="#!"><?php echo $Don['typedon']; ?></a></h4>
+                            <p class="price"><?php echo $Don['montant']; ?> </p>
                             <!-- Add any additional details you want to display -->
+                            
                            
                         </div>
                     </div>
@@ -398,29 +379,27 @@ $events = $eventController->listEvents();
 
   </body>
 <!-- <body>
-    <h2>Liste des Événements</h2>
+    <h2>Liste des Dons</h2>
 
-    <a href="addEvent.php">Ajouter un événement</a>
+    <a href="addDon.php">Ajouter un Don</a>
     <br><br>
 
     <table border="1">
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Localisation</th>
-            <th>Date</th>
+            <th>Type</th>
+            <th>Montant</th>
             <th>Action</th>
         </tr>
 
         <?php
-        // Afficher les événements
-        foreach ($events as $event) {
+        // Afficher les Dons
+        foreach ($Dons as $Don) {
             echo "<tr>";
-            echo "<td>{$event['id']}</td>";
-            echo "<td>{$event['nom']}</td>";
-            echo "<td>{$event['localisation']}</td>";
-            echo "<td>{$event['date']}</td>";
-            echo "<td><a href='editEvent.php?id={$event['id']}'>Modifier</a> | <a href='deleteEvent.php?id={$event['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet événement ?\")'>Supprimer</a></td>";
+            echo "<td>{$Don['id']}</td>";
+            echo "<td>{$Don['Type']}</td>";
+            echo "<td>{$Don['Montant']}</td>";
+            echo "<td><a href='editEvent.php?id={$Don['id']}'>Modifier</a> | <a href='deleteEvent.php?id={$Don['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet Don ?\")'>Supprimer</a></td>";
             echo "</tr>";
         }
         ?>
