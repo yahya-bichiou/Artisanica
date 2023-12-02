@@ -130,4 +130,49 @@ class NewsC
         $stmt->close();
         $db->close();
     }
+
+
+
+public function mostLikedPost()
+{
+    $sql = "SELECT id FROM news ORDER BY likes DESC LIMIT 1";
+    $db = config::getConnexion();
+    $req = $db->prepare($sql);
+
+    try {
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Check if a post was found
+        if ($result) {
+            return $result['id'];
+        } else {
+            return null; // Return null if no post is found
+        }
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
+    }
+}
+
+public function leastLikedPost()
+{
+    $sql = "SELECT id FROM news ORDER BY likes ASC LIMIT 1";
+    $db = config::getConnexion();
+    $req = $db->prepare($sql);
+
+    try {
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Check if a post was found
+        if ($result) {
+            return $result['id'];
+        } else {
+            return null; // Return null if no post is found
+        }
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
+    }
+}
+
 }
