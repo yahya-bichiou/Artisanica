@@ -1,4 +1,3 @@
-
 <?php
 
 include '../../Controller/reponseController.php';
@@ -14,13 +13,11 @@ $reponseController = new reponseController();
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $idReclamation = $_GET['id'];
-    if ($idReclamation ) {
-    $reponsedetails=$reponseController->showresponsebyidreclamation($idReclamation);
-    } else if ($idReclamation == '') 
-    {
+    if ($idReclamation) {
+        $reponsedetails = $reponseController->showresponsebyidreclamation($idReclamation);
+    } else if ($idReclamation == '') {
         $reponsedetails = $reponseController->showresponsebyidreclamation('');
     }
-
 } else {
     // Redirigez ou affichez un message d'erreur, car l'ID de la réclamation n'est pas présent dans l'URL
     echo "L'ID de la réclamation n'est pas spécifié dans l'URL.";
@@ -34,521 +31,530 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 ?>
 
 
+
+
+<!-- 
+THEME: Aviato | E-commerce template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+
+HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
+DEMO: https://demo.themefisher.com/aviato/
+GITHUB: https://github.com/themefisher/Aviato-E-Commerce-Template/
+
+WEBSITE: https://themefisher.com
+TWITTER: https://twitter.com/themefisher
+FACEBOOK: https://www.facebook.com/themefisher
+-->
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
+    <!-- Basic Page Needs
+  ================================================== -->
     <meta charset="utf-8">
+    <title>Aviato | E-commerce template</title>
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Construction Html5 Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Themefisher">
+    <meta name="generator" content="Themefisher Constra HTML Template v1.0">
 
-    <title>SB Admin 2 - Tables</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Animate css -->
+    <link rel="stylesheet" href="plugins/animate/animate.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick/slick-theme.css">
 
-    <!-- Custom styles for this page -->
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
+    <style>
+        .btn {
+            background-color: transparent;
+            border-color: black;
+            color: black;
+        }
+    </style>
 </head>
 
-<body>
-<body id="page-top">
+<body id="body">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-<div class="sidebar-brand-icon rotate-n-15">
-    <i class="fas fa-laugh-wink"></i>
-</div>
-<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-</a>
-
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
-
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-<a class="nav-link" href="index.html">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Dashboard</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-Interface
-</div>
-
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-    aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-cog"></i>
-    <span>Components</span>
-</a>
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Components:</h6>
-        <a class="collapse-item" href="buttons.html">Buttons</a>
-        <a class="collapse-item" href="cards.html">Cards</a>
-        <a class="collapse-item" href="cards.html">Cards</a>
-
-    </div>
-</div>
-</li>
-
-<li class="nav-item">
-<a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsereclam"
-    aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-cog"></i>
-    <span>Reclamations</span>
-</a>
-<div id="collapsereclam" class="collapse" aria-labelledby="headingTwo" >
-    <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Reclamations:</h6>
-        <a class="collapse-item" href="tablesReclam.html">All Reclams</a>
-    </div>
-</div>
-</li>
-
-
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-    aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="fas fa-fw fa-wrench"></i>
-    <span>Utilities</span>
-</a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-    data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Utilities:</h6>
-        <a class="collapse-item" href="utilities-color.html">Colors</a>
-        <a class="collapse-item" href="utilities-border.html">Borders</a>
-        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-        <a class="collapse-item" href="utilities-other.html">Other</a>
-    </div>
-</div>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-Addons
-</div>
-
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-    aria-expanded="true" aria-controls="collapsePages">
-    <i class="fas fa-fw fa-folder"></i>
-    <span>Pages</span>
-</a>
-<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Login Screens:</h6>
-        <a class="collapse-item" href="login.html">Login</a>
-        <a class="collapse-item" href="register.html">Register</a>
-        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-        <div class="collapse-divider"></div>
-        <h6 class="collapse-header">Other Pages:</h6>
-        <a class="collapse-item" href="404.html">404 Page</a>
-        <a class="collapse-item" href="blank.html">Blank Page</a>
-    </div>
-</div>
-</li>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-<a class="nav-link" href="charts.html">
-    <i class="fas fa-fw fa-chart-area"></i>
-    <span>Charts</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-<a class="nav-link" href="tables.html">
-    <i class="fas fa-fw fa-table"></i>
-    <span>Tables</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
-
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-<button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
-
-<!-- Sidebar Message -->
-<div class="sidebar-card d-none d-lg-flex">
-<img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-<p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-<a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-</div>
-
-</ul>
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
-        <div id="content">
-
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <form class="form-inline">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </form>
-
-                <!-- Topbar Search -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                    
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                            
-                        </div>
+    <!-- Start Top Header Bar -->
+    <section class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="contact-number">
+                        <i class="tf-ion-ios-telephone"></i>
+                        <span>0129- 12323-123123</span>
                     </div>
-                </form>
-
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Site Logo -->
+                    <div class="logo text-center">
+                        <a href="index.html">
+                            <!-- replace logo here -->
+                            <svg width="135px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40" font-family="AustinBold, Austin" font-weight="bold">
+                                    <g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+                                        <text id="AVIATO">
+                                            <tspan x="108.94" y="325">AVIATO</tspan>
+                                        </text>
+                                    </g>
+                                </g>
+                            </svg>
                         </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                            aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                        placeholder="Search for..." aria-label="Search"
-                                        aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Cart -->
+                    <ul class="top-menu text-right list-inline">
+                        <li class="dropdown cart-nav dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Cart</a>
+                            <div class="dropdown-menu cart-dropdown">
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#!">
+                                        <img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
+                                        </div>
+                                        <h5><strong>$1200</strong></h5>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#!">
+                                        <img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
+                                        </div>
+                                        <h5><strong>$1200</strong></h5>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
 
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                        alt="...">
-                                    <div class="status-indicator bg-success"></div>
+                                <div class="cart-summary">
+                                    <span>Total</span>
+                                    <span class="total-price">$1799.00</span>
                                 </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                        alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                        alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                        alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                src="img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </nav>
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-            
-    <hr>
-
-     <form action="" method="POST">
-    <table>
-        
-    <a href="http://localhost/artisanicaReclam/view/BackOffice/tablesReclam.php">Retour à la liste des Reclamations</a>
-    <hr>
-
-    
-  
-    </div>
-
-  <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>Date</th>
-                                            <th>Objet</th>
-                                            <th>Description</th>
-                                            <th>Modifier</th>
-                                            <th>Supprimer</th>
-                                        
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-
-                                    <?php if (isset($reponsedetails) && $reponsedetails): 
-                                        echo "<tr>";
-            
-                                        echo "<td>{$reponsedetails['date']}</td>";
-                                        echo "<td>{$reponsedetails['objet']}</td>";
-                                        echo "<td>{$reponsedetails['description']}</td>";
-                                        echo "<td><a href='editreponse.php?id={$reponsedetails['id']}' class='btn btn-primary btn-circle'><i class='fas fa-edit'></i></a></td>";
-                                        echo "<td> <a href='deletereponse.php?id={$reponsedetails['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet événement ?\")' class='btn btn-outline-danger btn-circle'><i class='fas fa-trash'></i></a></td>";
-                                        echo "</tr>";
-                                        ?>
-<?php else: ?>
-            <p>Vous n'avez pas encore répondu à cette réclamation.</p>
-        <?php endif; ?>
-                                    
-        
-                                     
-                                    </tbody>
-                                </table>
+                                <ul class="text-center cart-buttons">
+                                    <li><a href="cart.html" class="btn btn-small">View Cart</a></li>
+                                    <li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+                                </ul>
                             </div>
-                        </div>
-                        
-  
-       
-    </table>
-</form> 
-<table>
-                        </div>
-                    </div>
+
+                        </li><!-- / Cart -->
+
+                        <!-- Search -->
+                        <li class="dropdown search dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-ios-search-strong"></i> Search</a>
+                            <ul class="dropdown-menu search-dropdown">
+                                <li>
+                                    <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+                                </li>
+                            </ul>
+                        </li><!-- / Search -->
+
+                        <!-- Languages -->
+                        <li class="commonSelect">
+                            <select class="form-control">
+                                <option>EN</option>
+                                <option>DE</option>
+                                <option>FR</option>
+                                <option>ES</option>
+                            </select>
+                        </li><!-- / Languages -->
+
+                    </ul><!-- / .nav .navbar-nav .navbar-right -->
                 </div>
-
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
             </div>
         </div>
+    </section><!-- End Top Header Bar -->
+
+
+    <!-- Main Menu Section -->
+    <section class="menu">
+        <nav class="navbar navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <h2 class="menu-title">Main Menu</h2>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div><!-- / .navbar-header -->
+
+                <!-- Navbar Links -->
+                <div id="navbar" class="navbar-collapse collapse text-center">
+                    <ul class="nav navbar-nav">
+
+                        <!-- Home -->
+                        <li class="dropdown ">
+                            <a href="index.html">Home</a>
+                        </li><!-- / Home -->
+
+
+                        <!-- Elements -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="tf-ion-ios-arrow-down"></span></a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+
+                                    <!-- Basic -->
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Pages</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="pricing.html">Pricing</a></li>
+                                            <li><a href="confirmation.html">Confirmation</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!-- Layout -->
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Layout</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="product-single.html">Product Details</a></li>
+                                            <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                </div><!-- / .row -->
+                            </div><!-- / .dropdown-menu -->
+                        </li><!-- / Elements -->
+
+
+                        <!-- Pages -->
+                        <li class="dropdown full-width dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="tf-ion-ios-arrow-down"></span></a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+
+                                    <!-- Introduction -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Introduction</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li><a href="about.html">About Us</a></li>
+                                            <li><a href="404.html">404 Page</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li><a href="faq.html">FAQ</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Contact -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Dashboard</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="dashboard.html">User Interface</a></li>
+                                            <li><a href="order.html">Orders</a></li>
+                                            <li><a href="address.html">Address</a></li>
+                                            <li><a href="profile-details.html">Profile Details</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Utility -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Utility</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="login.html">Login Page</a></li>
+                                            <li><a href="signin.html">Signin Page</a></li>
+                                            <li><a href="forget-password.html">Forget Password</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Mega Menu -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <a href="shop.html">
+                                            <img class="img-responsive" src="images/shop/header-img.jpg" alt="menu image" />
+                                        </a>
+                                    </div>
+                                </div><!-- / .row -->
+                            </div><!-- / .dropdown-menu -->
+                        </li><!-- / Pages -->
+
+
+
+                        <!-- Blog -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="tf-ion-ios-arrow-down"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                <li><a href="blog-full-width.html">Blog Full Width</a></li>
+                                <li><a href="blog-grid.html">Blog 2 Columns</a></li>
+                                <li><a href="blog-single.html">Blog Single</a></li>
+                            </ul>
+                        </li><!-- / Blog -->
+
+                        <!-- Shop -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">Elements <span class="tf-ion-ios-arrow-down"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="typography.html">Typography</a></li>
+                                <li><a href="buttons.html">Buttons</a></li>
+                                <li><a href="alerts.html">Alerts</a></li>
+                            </ul>
+                        </li><!-- / Blog -->
+                    </ul><!-- / .nav .navbar-nav -->
+
+                </div>
+                <!--/.navbar-collapse -->
+            </div><!-- / .container -->
+        </nav>
+    </section>
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <hr>
+
+        <form action="" method="POST">
+            <table>
+
+                <a href="http://localhost/artisanicaReclam/view/BackOffice/tablesReclam.php">Retour à la liste des Reclamations</a>
+                <hr>
+
+
+
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                        <th onclick="sortTable(0)">Date <span id="sortIcon0"></th>
+                        <th onclick="sortTable(1)">Objet<span id="sortIcon1"> </th>
+                        <th onclick="sortTable(2)"> Description<span id="sortIcon2"></th>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
-<!-- searchh -->
-<!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                    </tr>
+                </thead>
 
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script> 
+                <tbody>
 
-</body>
+                    <?php if (isset($reponsedetails) && $reponsedetails) :
+                        echo "<tr>";
+
+                        echo "<td>{$reponsedetails['date']}</td>";
+                        echo "<td>{$reponsedetails['objet']}</td>";
+                        echo "<td>{$reponsedetails['description']}</td>";
+                        echo "</tr>";
+                    ?>
+                    <?php else : ?>
+                        <p>Vous n'avez pas encore répondu à cette réclamation.</p>
+                    <?php endif; ?>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <section class="page-wrapper">
+        <div class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <?php
+                    $_SERVER['DOCUMENT_ROOT'] . '/ARTISANICARECLAM/view/BackOffice/getreponse.php';
+                    ?>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer class="footer section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="social-media">
+                        <li>
+                            <a href="https://www.facebook.com/themefisher">
+                                <i class="tf-ion-social-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/themefisher">
+                                <i class="tf-ion-social-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/themefisher">
+                                <i class="tf-ion-social-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pinterest.com/themefisher/">
+                                <i class="tf-ion-social-pinterest"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="footer-menu text-uppercase">
+                        <li>
+                            <a href="contact.html">CONTACT</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">SHOP</a>
+                        </li>
+                        <li>
+                            <a href="pricing.html">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">PRIVACY POLICY</a>
+                        </li>
+                    </ul>
+                    <p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Touchpin -->
+    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- Instagram Feed Js -->
+    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <!-- Video Lightbox Plugin -->
+    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <!-- Count Down Js -->
+    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+
+    <!-- slick Carousel -->
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/slick/slick-animation.min.js"></script>
+
+    <!-- Google Mapl -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
+    <!-- Main Js File -->
+    <script src="js/script.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        var sortDirection = 1; // 1 for ascending, -1 for descending
+        var sortedColumnIndex = -1;
+
+        function sortTable(columnIndex) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("dataTable");
+            switching = true;
+
+            // Set the sort icon for the selected column
+            updateSortIcon(columnIndex);
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+
+                    x = rows[i].getElementsByTagName("td")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+                    if (sortDirection == 1) {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (sortDirection == -1) {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+
+            // Toggle sort direction
+            sortDirection *= -1;
+            sortedColumnIndex = columnIndex;
+        }
+
+        // Add logic for updating sort icons
+        function updateSortIcon(columnIndex) {
+            // Reset all sort icons
+            for (var i = 0; i < 4; i++) {
+                var icon = document.getElementById("sortIcon" + i);
+                if (icon) {
+                    icon.innerHTML = "";
+                }
+            }
+
+            // Set the sort icon for the selected column
+            var icon = document.getElementById("sortIcon" + columnIndex);
+            if (icon) {
+                icon.innerHTML = sortDirection == 1 ? "▲" : "▼";
+            }
+        }
+    </script>
+
 </body>
 
 </html>
@@ -560,13 +566,3 @@ Addons
 
 
 -->
-
-
-
-
-
-
-
-
-
-
