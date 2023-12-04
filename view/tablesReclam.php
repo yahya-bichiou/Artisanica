@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../../Controller/ReclamController.php';
 
 // Créer une instance du contrôleur
@@ -6,6 +6,16 @@ $reclamController = new ReclamController();
 
 // Récupérer la liste des événements depuis la base de données
 $reclams = $reclamController->listReclams();
+
+$reclamsDateASC = $reclamController->listReclamsOrderBy('date', 'ASC');
+$reclamsDateDESC = $reclamController->listReclamsOrderBy('date', 'DESC');
+
+$reclamsObjetASC = $reclamController->listReclamsOrderBy('objet', 'ASC');
+$reclamsObjetDESC = $reclamController->listReclamsOrderBy('objet', 'DESC');
+
+$reclamsD_ASC = $reclamController->listReclamsOrderBy('description', 'ASC');
+$reclamsD_DESC = $reclamController->listReclamsOrderBy('description', 'DESC');
+
 ?>
 
 <html lang="en">
@@ -22,9 +32,7 @@ $reclams = $reclamController->listReclams();
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -42,143 +50,138 @@ $reclams = $reclamController->listReclams();
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-    <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-</a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="index.html">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-</li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Interface
-</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Components</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Components</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
 
-        </div>
-    </div>
-</li>
+                    </div>
+                </div>
+            </li>
 
-<li class="nav-item">
-    <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsereclam"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Reclamations</span>
-    </a>
-    <div id="collapsereclam" class="collapse" aria-labelledby="headingTwo" >
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Reclamations:</h6>
-            <a class="collapse-item" href="tablesReclam.php">All Reclams</a>
-        </div>
-    </div>
-</li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsereclam" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Reclamations</span>
+                </a>
+                <div id="collapsereclam" class="collapse" aria-labelledby="headingTwo">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Reclamations:</h6>
+                        <a class="collapse-item" href="tablesReclam.php">All Reclams</a>
+                    </div>
+                </div>
+            </li>
 
 
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Utilities</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-        data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-        </div>
-    </div>
-</li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilities</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Addons
-</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-        aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-        </div>
-    </div>
-</li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
 
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
-</li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
 
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-    <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
-</li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
-<!-- Sidebar Message -->
-<div class="sidebar-card d-none d-lg-flex">
-    <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-</div>
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+            </div>
 
-</ul>
+        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -198,17 +201,15 @@ $reclams = $reclamController->listReclams();
                     </form>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                        
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
-                                
+
                             </div>
                         </div>
                     </form>
@@ -218,18 +219,14 @@ $reclams = $reclamController->listReclams();
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -242,15 +239,13 @@ $reclams = $reclamController->listReclams();
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -293,22 +288,19 @@ $reclams = $reclamController->listReclams();
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -319,8 +311,7 @@ $reclams = $reclamController->listReclams();
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -331,8 +322,7 @@ $reclams = $reclamController->listReclams();
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -343,8 +333,7 @@ $reclams = $reclamController->listReclams();
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -361,15 +350,12 @@ $reclams = $reclamController->listReclams();
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -401,23 +387,33 @@ $reclams = $reclamController->listReclams();
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        
 
                         <div class="card-body">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sort By
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="sortDropdown">
+                                    <a class="dropdown-item" href="#" data-column="date" data-direction="ASC">Date (Ascending)</a>
+                                    <a class="dropdown-item" href="#" data-column="date" data-direction="DESC">Date (Descending)</a>
+                                    <a class="dropdown-item" href="#" data-column="objet" data-direction="ASC">Object (Ascending)</a>
+                                    <a class="dropdown-item" href="#" data-column="objet" data-direction="DESC">Object (Descending)</a>
+                                    <a class="dropdown-item" href="#" data-column="description" data-direction="ASC">Description (Ascending)</a>
+                                    <a class="dropdown-item" href="#" data-column="description" data-direction="DESC">Description (Descending)</a>
+                                </div>
+                            </div>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <a href="http://localhost/artisanicaReclam/view/FrontOffice/addReclamation.php">Ajouter une nouvelle Reclamation </a>
                                     <thead>
                                         <tr>
-                                            
                                             <th>Date</th>
                                             <th>Objet</th>
                                             <th>Description</th>
@@ -425,27 +421,26 @@ $reclams = $reclamController->listReclams();
                                             <th>Supprimer</th>
                                             <th>Reponse</th>
                                             <th>Get Reponse</th>
-                                        
                                         </tr>
                                     </thead>
-                                    
+
                                     <tbody>
-                                    <?php
-        // Afficher les événements
-        foreach ($reclams as $reclam) {
-            echo "<tr>";
-            
-            echo "<td>{$reclam['date']}</td>";
-            echo "<td>{$reclam['objet']}</td>";
-            echo "<td>{$reclam['description']}</td>";
-            echo "<td><a href='editReclam.php?id={$reclam['id']}' class='btn btn-primary btn-circle'><i class='fas fa-edit'></i></a></td>";
-            echo "<td> <a href='deleteReclam.php?id={$reclam['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet événement ?\")' class='btn btn-outline-danger btn-circle'><i class='fas fa-trash'></i></a></td>";
-            echo "<td><a href='addreponse.php?id={$reclam['id']}' class='btn btn-outline-success btn-circle'><i class='fas fa-edit'></i></a></td>";
-            echo "<td><a href='getreponse.php?id={$reclam['id']}' class='btn btn-outline-success btn-circle'><i class='fas fa-eye'></i></i></a></td>";
-            echo "</tr>";
-        }
-        ?>
-                                     
+                                        <?php
+                                        // Afficher les événements
+                                        foreach ($reclams as $reclam) {
+                                            echo "<tr>";
+
+                                            echo "<td>{$reclam['date']}</td>";
+                                            echo "<td>{$reclam['objet']}</td>";
+                                            echo "<td>{$reclam['description']}</td>";
+                                            echo "<td><a href='editReclam.php?id={$reclam['id']}' class='btn btn-primary btn-circle'><i class='fas fa-edit'></i></a></td>";
+                                            echo "<td> <a href='deleteReclam.php?id={$reclam['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet événement ?\")' class='btn btn-outline-danger btn-circle'><i class='fas fa-trash'></i></a></td>";
+                                            echo "<td><a href='addreponse.php?id={$reclam['id']}' class='btn btn-outline-success btn-circle'><i class='fas fa-edit'></i></a></td>";
+                                            echo "<td><a href='getreponse.php?id={$reclam['id']}' class='btn btn-outline-success btn-circle'><i class='fas fa-eye'></i></i></a></td>";
+                                            echo "</tr>";
+                                        }
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -480,8 +475,7 @@ $reclams = $reclamController->listReclams();
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -499,7 +493,7 @@ $reclams = $reclamController->listReclams();
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript--> 
+    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -515,6 +509,74 @@ $reclams = $reclamController->listReclams();
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- Add this inside the <head> section -->
+
+    <script>
+        $(document).ready(function() {
+            // Function to handle sorting
+            function sortTable(column, direction) {
+                // Get the table rows and convert to an array
+                var rows = $('#dataTable tbody tr').get();
+
+                // Sort the array based on the selected column and direction
+                rows.sort(function(a, b) {
+                    var A = $(a).children('td').eq(column).text().toUpperCase();
+                    var B = $(b).children('td').eq(column).text().toUpperCase();
+
+                    if (A < B) return -1;
+                    if (A > B) return 1;
+                    return 0;
+                });
+
+                // Reverse the order if descending
+                if (direction === 'DESC') {
+                    rows.reverse();
+                }
+
+                // Append sorted rows to the table
+                $.each(rows, function(index, row) {
+                    $('#dataTable tbody').append(row);
+                });
+            }
+
+            // Handle dropdown item click
+            $('.dropdown-item').on('click', function(e) {
+                e.preventDefault();
+
+                // Get the selected column and direction
+                var column = $(this).data('column');
+                var direction = $(this).data('direction');
+
+                // Update the dropdown text
+                $('#sortDropdown').text($(this).text());
+
+                // Clear active class from all dropdown items
+                $('.dropdown-item').removeClass('active');
+
+                // Add active class to the clicked item
+                $(this).addClass('active');
+
+                // Sort the table based on the selected option
+                switch (column) {
+                    case 'date':
+                        sortTable(0, direction);
+                        break;
+                    case 'objet':
+                        sortTable(1, direction);
+                        break;
+                    case 'description':
+                        sortTable(2, direction);
+                        break;
+                        // Add more cases as needed for additional columns
+                }
+            });
+        });
+    </script>
+
+
+
+
 
 </body>
 
