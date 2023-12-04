@@ -17,6 +17,26 @@ class ReclamController
         }
     }
 
+    public function listReclamsOrderBy($column, $order)
+    {
+        $validColumns = ['date', 'objet', 'description'];
+
+        if (!in_array($column, $validColumns) || !in_array(strtoupper($order), ['ASC', 'DESC'])) {
+            die('Invalid column or order');
+        }
+
+        $sql = "SELECT * FROM reclamations ORDER BY $column $order";
+        $db = config::getConnexion();
+
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+
     function deleteReclam($reclamId)
     {
         $sql = "DELETE FROM reclamations WHERE id = :id";
@@ -37,18 +57,18 @@ class ReclamController
         $date = $reclam->getDate();
         $objet = $reclam->getObjet();
         $description = $reclam->getDescription();
-     
+
         // Validation des données
         if (empty($date) || empty($objet) || empty($description)) {
             echo "Tous les champs doivent être renseignés.";
             return;
         }
-    
+
         // Vous pouvez ajouter d'autres validations ici (par exemple, format de date)
-    
+
         $sql = "INSERT INTO reclamations (date , objet , description) VALUES (:date, :objet, :description)";
         $db = config::getConnexion();
-        
+
         try {
             $query = $db->prepare($sql);
             $query->bindParam(':date', $date);
@@ -60,7 +80,7 @@ class ReclamController
             echo 'Erreur lors de l\'ajout de la reclamation : ' . $e->getMessage();
         }
     }
-    
+
 
     function showReclam($id)
     {
@@ -101,4 +121,3 @@ class ReclamController
         }
     }
 }
-?>
