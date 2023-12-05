@@ -1,8 +1,8 @@
 <?php
-require_once'../../config.php';
+require_once '../../config.php';
 $conn = config::getConnexion();
-$sql="SELECT * FROM produit";
-$all_product= $conn->query($sql);
+$sql = "SELECT * FROM produit ORDER BY prix_produit DESC"; // Fetch products ordered by price (descending)
+$all_product = $conn->query($sql);
 ?>
 
 
@@ -295,11 +295,11 @@ $all_product= $conn->query($sql);
 	</div>
 </section>
 <style>
-	#sortButton {
+    #sortButton {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: gold;
+  background-color: brown;
   color: white;
   border: none;
   border-radius: 5px;
@@ -318,7 +318,6 @@ $all_product= $conn->query($sql);
     <p>Produits les plus achetés</p>
 	<a href="product_trie.php"><button id="sortButton">trier les produits(plus chére vers le moin chére)</button></a>
 	<a href="shop.php"><button id="sortButton">affichage aléatoire</button></a>
-	
     <div class="pro-container">
         <?php foreach ($all_product as $produit): ?>
             <div class="pro">

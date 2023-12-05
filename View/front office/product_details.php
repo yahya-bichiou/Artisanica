@@ -5,8 +5,20 @@ $id= "";
 if(isset($_GET["id"])){
     $id=$_GET["id"];
 }
-$sql="SELECT * FROM produit WHERE id_produit=$id";
-$all_product= $conn->query($sql);
+$sql="SELECT * FROM produit WHERE id_produit=:id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$all_product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rowCount = $stmt->rowCount();
+
+$sql = "SELECT * FROM review WHERE id_post = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$reviewCount = $stmt->rowCount();
+
 ?>
 
 
@@ -45,7 +57,7 @@ $all_product= $conn->query($sql);
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="css/product.css">
+  <!-- <link rel="stylesheet" href="css/product.css"> -->
   <link rel="stylesheet" href="css/search.css">
   <script src="https://kit.fontawesome.com/4c65eeaabf.js" crossorigin="anonymous"></script>
 
@@ -298,31 +310,140 @@ $all_product= $conn->query($sql);
 </section>
 
 
-<section class="produits" id="section-p1">
+<section class="product-container" id="section-p1">
     <?php
-    if($result->num_rows >0){
-    while($row= $result->fetch_assoc()){
-        ?>
-            <div class="pro">
-                            <img src="images/shop/products/<?php echo $row["nom_image"];?>" alt="">
-                            <div class="des">
-                                <span>$<?php echo $row["nom_produit"];?></span>
-                                
-                                <div class="star">
-                                    <!-- Your star rating dsisplay code here -->
-                                </div>
-                                <h4>$<?php echo $row["prix_produit"];?></h4>
-                            </div>
-                            <a href="product_details.php?id=<?php echo $row["id_produit"];?>" ><i class="fa-solid fa-cart-shopping"></i> </a>
-                            
-                     </div>
-        <?php 
+    if ($rowCount > 0) {
+        foreach ($all_product as $row) {
+    ?>
+        <div class="product-details-container">
+            <div class="product-image-container">
+                <img src="images/shop/products/<?php echo $row["nom_image"]; ?>" alt="Product Name">
+            </div>
+            <div class="product-info-container">
+                <h2 class="product-name"><?php echo $row["nom_produit"]; ?></h2>
+                <p class="product-description">Product Description</p>
+                <p class="product-price"><?php echo $row["prix_produit"]; ?>$</p>
+                <a href="add_review.php?id=<?php echo $row["id_produit"];?>" class="add-review-link">Add Review</a>
+            </div>
+        </div>
+    <?php
+        }
     }
-    
-}
-?>
-
+    ?>
 </section>
+
+<section class="review-container-section">
+    <!-- Reviews -->
+    <?php
+    if ($reviewCount > 0) {
+        $colors = ['#f8b195', '#f67280', '#c06c84', '#6c5b7b', '#355c7d']; // Array of colors
+        $colorIndex = 0;
+
+        foreach ($reviews as $review) {
+            $color = $colors[$colorIndex % count($colors)]; // Get color from array
+
+            echo "<div class='review-item' style='background-color: $color'>";
+            echo "<h3>User: " . $review['name_user'] . "</h3>";
+            echo "<h4>Review: " . $review['review_data'] . "</h4>";
+            echo "</div>";
+
+            $colorIndex++;
+        }
+    } else {
+        echo "<p>No reviews available for this product.</p>";
+    }
+    ?>
+</section>
+
+	<style>
+	/* Product Details */
+.product-details-container 
+{
+	background-color:skyblue;
+	color:black;
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.product-image-container img {
+  max-width: 200px;
+  height: auto;
+}
+
+.product-info-container {
+  flex: 1;
+  
+  padding: 0 20px;
+}
+
+.product-info-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info-container p {
+	color:black;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-weight: bold;
+  color:black;
+  font-size: 20px;
+  
+}
+
+.add-review-link {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1abc9c;
+  padding: 8px 15px;
+  border-radius: 4px;
+}
+
+.add-review-link:hover {
+  background-color: #16a085;
+}
+
+/* Review Section */
+.review-container-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.review-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: colorFade 5s infinite linear;
+}
+
+.review-item h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.review-item p {
+  margin-bottom: 0;
+}
+
+/* Animation */
+@keyframes colorFade {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+	</style>
 
 
 
